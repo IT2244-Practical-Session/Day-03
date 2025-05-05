@@ -1,0 +1,91 @@
+touch xyz.csv //create xyz.csv file
+vi xyz.csv //used to enter data into file
+
+//after entering vi command press the "i" key.
+//then can enter data in terminal window(can use commas,tab to separate data from each)
+//after entering all data press ctrl+c then :wq! (to exit editing)
+
+more xyz.csv //view the data in xyz.csv file
+awk -F ',' '{print $1}' xyz.csv //print only 1st column data
+awk -F ',' '{print NF; exit}' xyz.csv //get the number of columns
+cut -d ',' -f 1 xyz.csv //cut 1st column and show it
+head -n3 xyz.csv | tail -n1  //give the 3rd row data
+head -n7 xyz.csv | grep '11' //give the rows that contain '11' (-n7 is the number of rows in file)
+
+//tab separeted file
+touch lmn.csv //create lmn.csv file
+vi lmn.csv //used to enter data into file
+
+//after entering vi command press the "i" key.
+//then can enter data in terminal window(can use commas,tab to separate data from each)
+//after entering all data press ctrl+c then :wq! (to exit editing)
+
+more lmn.csv //view the data in lmn.csv file
+cut -d $'\t' -f1 lmn.csv //cut and show 1st column in tab separated file
+head -n3 lmn.csv | tail -n1  //give the 3rd row data
+awk -F '\t' '{print NF; exit}' lmn.csv //display the number of columns in tab separated file
+head -n6 lmn.csv | grep '56' //give the rows that contain '56' (-n5 is the number of rows in file)
+exit //exit from the terminal window
+
+
+Output Code:
+
+nishagee@DESKTOP-SSCDF5K:~$ touch xyz.csv
+nishagee@DESKTOP-SSCDF5K:~$ vixyz.csv
+vixyz.csv: command not found
+nishagee@DESKTOP-SSCDF5K:~$ vi xyz.csv
+nishagee@DESKTOP-SSCDF5K:~$ more xyz.csv
+11,12,13,14,15
+21,22,23,24,25
+31,32,33,34,35
+41,42,43,44,45
+51,52,53,54,55
+61,62,63,64,65
+34,67,11,89,11
+nishagee@DESKTOP-SSCDF5K:~$ awk -F ',' '{print $1}' xyz.csv
+11
+21
+31
+41
+51
+61
+34
+nishagee@DESKTOP-SSCDF5K:~$ awk -F ',' '{print NF; exit}' xyz.csv
+5
+nishagee@DESKTOP-SSCDF5K:~$ cut -d ',' -f 1 xyz.csv
+11
+21
+31
+41
+51
+61
+34
+nishagee@DESKTOP-SSCDF5K:~$ head -n3 xyz.csv | tail -n1
+31,32,33,34,35
+nishagee@DESKTOP-SSCDF5K:~$ head -n7 xyz.csv | grep '11'
+11,12,13,14,15
+34,67,11,89,11
+nishagee@DESKTOP-SSCDF5K:~$ touch lmn.csv
+nishagee@DESKTOP-SSCDF5K:~$ vi lmn.csv
+nishagee@DESKTOP-SSCDF5K:~$ more lmn.csv
+12      67      89
+34      56      89
+23      45      67
+66      88      99
+33      55      44
+56      78      12
+nishagee@DESKTOP-SSCDF5K:~$ cut -d $'\t' -f1 lmn.csv
+12
+34
+23
+66
+33
+56
+nishagee@DESKTOP-SSCDF5K:~$ head -n3 lmn.csv | tail -n1
+23      45      67
+nishagee@DESKTOP-SSCDF5K:~$ awk -F '\t' '{print NF; exit}' lmn.csv
+3
+nishagee@DESKTOP-SSCDF5K:~$ head -n6 lmn.csv | grep '56'
+34      56      89
+56      78      12
+nishagee@DESKTOP-SSCDF5K:~$exit
